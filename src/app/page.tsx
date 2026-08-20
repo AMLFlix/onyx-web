@@ -79,7 +79,7 @@ export default async function HomePage() {
           <div className="flex gap-3 overflow-x-auto px-4 md:px-8 pb-4 scrollbar-none snap-x snap-mandatory">
             {live.map((match: any) => (
               <div key={match.match_id} className="snap-start shrink-0">
-                <a href={`http://localhost:3001/match/${match.match_id}`} target="_blank" rel="noopener noreferrer" className="block">
+                <a href={`https://onyx-stream-mu.vercel.app/match/${match.match_id}`} target="_blank" rel="noopener noreferrer" className="block">
                   <LiveMatchCard match={match}/>
                 </a>
               </div>
@@ -108,7 +108,7 @@ export default async function HomePage() {
           <div className="flex gap-3 overflow-x-auto px-4 md:px-8 pb-4 scrollbar-none snap-x snap-mandatory">
             {highlights.map((match: any) => (
               <div key={match.match_id} className="snap-start shrink-0">
-                <a href={`https://stream.onyx.com/match/${match.match_id}`} target="_blank" rel="noopener noreferrer" className="block">
+                <a href={`https://onyx-stream-mu.vercel.app//match/${match.match_id}`} target="_blank" rel="noopener noreferrer" className="block">
                   <HighlightCard match={match}/>
                 </a>
               </div>

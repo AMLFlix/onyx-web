@@ -47,7 +47,7 @@ export default async function HighlightsPage() {
               /* 🔴 ဤနေရာတွင် <a> tag ဖြင့် ဒုတိယ Domain သို့ လွှဲပြောင်းပေးထားပါသည် */
               <a 
                 key={match.match_id} 
-                href={`http://localhost:3001/match/${match.match_id}`} 
+                href={`https://onyx-stream-mu.vercel.app/match/${match.match_id}`} 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="block h-full transition-transform hover:scale-[1.02]"
