@@ -1,5 +1,4 @@
-export const runtime = 'edge';
-
+// src/app/api/matches/route.ts
 import { NextResponse } from 'next/server';
 
 export async function GET(request: Request) {

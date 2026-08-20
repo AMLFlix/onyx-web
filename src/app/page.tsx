@@ -1,5 +1,3 @@
-export const runtime = 'edge';
-
 import { LiveMatchCard } from '../components/LiveMatchCard';
 import { UpcomingSection } from '../components/UpcomingSection';
 import { HighlightCard } from '../components/HighlightCard';
