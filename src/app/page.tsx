@@ -13,7 +13,7 @@ async function getHomePageData() {
 
   const headers = {
     'X-App-Key': secretKey,
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)',
     'Accept': 'application/json',
   };
 
@@ -45,23 +45,45 @@ async function getHomePageData() {
 
 export default async function HomePage() {
   const { live, upcoming, highlights, ads } = await getHomePageData();
+
   const homeBanners = ads.filter((ad: any) => ad.position === 'home_banner' && ad.is_active === 1);
 
   return (
     <main className="min-h-screen bg-[#000000] text-white w-full overflow-x-hidden pb-10">
       
-      {/* Header & App Install Button */}
-      <div className="flex justify-between items-center px-4 md:px-8 py-4 border-b border-white/5 bg-black/90 sticky top-0 z-50 backdrop-blur-md">
+      {/* Header & Premium App Install Button */}
+      <div className="flex justify-between items-center px-4 md:px-8 py-4 border-b border-white/5 bg-[#000000]/80 sticky top-0 z-50 backdrop-blur-xl">
         <h1 className="text-2xl font-black tracking-wider">
           ONY<span className="text-[#00E676]">X</span>
         </h1>
+        
         <a 
           href={APP_DOWNLOAD_URL} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="bg-[#00E676] text-black text-xs font-bold px-3 py-1.5 rounded-lg hover:bg-[#00c864] transition-colors flex items-center gap-1.5 shadow-lg shadow-[#00E676]/10"
+          className="group flex items-center gap-2.5 bg-white/5 border border-white/10 hover:border-[#00E676]/40 px-2.5 py-1.5 rounded-xl transition-all duration-300 hover:bg-white/10 active:scale-95"
         >
-          <span>📥 App Install</span>
+          <div className="w-7 h-7 rounded-lg bg-black/50 group-hover:bg-[#00E676]/10 flex items-center justify-center transition-colors">
+            <svg 
+              width="14" 
+              height="14" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="2.5" 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              className="text-gray-400 group-hover:text-[#00E676] group-hover:-translate-y-0.5 transition-all duration-300"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+          </div>
+          <div className="flex flex-col pr-1">
+            <span className="text-[9px] font-black text-[#00E676] uppercase tracking-wider leading-none mb-0.5">Free</span>
+            <span className="text-xs font-bold text-gray-200 group-hover:text-white leading-none transition-colors">
+              Install App
+            </span>
+          </div>
         </a>
       </div>
 
@@ -88,7 +110,8 @@ export default async function HomePage() {
           <div className="flex gap-3 overflow-x-auto px-4 md:px-8 pb-4 scrollbar-none snap-x snap-mandatory">
             {live.map((match: any) => (
               <div key={match.match_id} className="snap-start shrink-0">
-                <a href={`${PLAYER_DOMAIN}/match/${match.match_id}`} target="_blank" rel="noopener noreferrer" className="block">
+                {/* target="_blank" ကို ဖယ်ရှားထားသောကြောင့် Tab အသစ်မပွင့်တော့ပါ */}
+                <a href={`${PLAYER_DOMAIN}/match/${match.match_id}`} className="block">
                   <LiveMatchCard match={match}/>
                 </a>
               </div>
@@ -117,7 +140,8 @@ export default async function HomePage() {
           <div className="flex gap-3 overflow-x-auto px-4 md:px-8 pb-4 scrollbar-none snap-x snap-mandatory">
             {highlights.map((match: any) => (
               <div key={match.match_id} className="snap-start shrink-0">
-                <a href={`${PLAYER_DOMAIN}/match/${match.match_id}`} target="_blank" rel="noopener noreferrer" className="block">
+                {/* target="_blank" ကို ဖယ်ရှားထားသောကြောင့် Tab အသစ်မပွင့်တော့ပါ */}
+                <a href={`${PLAYER_DOMAIN}/match/${match.match_id}`} className="block">
                   <HighlightCard match={match}/>
                 </a>
               </div>
