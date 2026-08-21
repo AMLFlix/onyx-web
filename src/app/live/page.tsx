@@ -1,4 +1,5 @@
 import { LiveMatchCard } from '../../components/LiveMatchCard';
+import { PLAYER_DOMAIN } from '../../lib/config';
 import Link from 'next/link';
 
 async function getAllLiveMatches() {
@@ -45,12 +46,9 @@ export default async function LiveMatchesPage() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {matches.map((match: any) => (
-              /* 🔴 ဤနေရာတွင် <a> tag ဖြင့် ဒုတိယ Domain သို့ လွှဲပြောင်းပေးထားပါသည် */
               <a 
                 key={match.match_id} 
-                href={`https://onyx-stream-mu.vercel.app/match/${match.match_id}`} 
-                target="_blank" 
-                rel="noopener noreferrer" 
+                href={`${PLAYER_DOMAIN}/match/${match.match_id}`} 
                 className="block w-full transition-transform hover:-translate-y-1"
               >
                 <div className="w-full h-full [&>div]:w-full">

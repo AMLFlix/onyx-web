@@ -1,4 +1,5 @@
 import { HighlightCard } from '../../components/HighlightCard';
+import { PLAYER_DOMAIN } from '../../lib/config';
 import Link from 'next/link';
 
 async function getAllHighlights() {
@@ -44,12 +45,9 @@ export default async function HighlightsPage() {
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 md:gap-6">
             {highlights.map((match: any) => (
-              /* 🔴 ဤနေရာတွင် <a> tag ဖြင့် ဒုတိယ Domain သို့ လွှဲပြောင်းပေးထားပါသည် */
               <a 
                 key={match.match_id} 
-                href={`https://onyx-stream-mu.vercel.app/match/${match.match_id}`} 
-                target="_blank" 
-                rel="noopener noreferrer" 
+                href={`${PLAYER_DOMAIN}/match/${match.match_id}`} 
                 className="block h-full transition-transform hover:scale-[1.02]"
               >
                 <HighlightCard match={match} />

@@ -1,5 +1,7 @@
 "use client";
 
+import { PLAYER_DOMAIN } from '../lib/config';
+
 export function UpcomingSection({ matches }: { matches: any[] }) {
   if (!matches || matches.length === 0) return null;
 
@@ -13,7 +15,7 @@ export function UpcomingSection({ matches }: { matches: any[] }) {
       {chunked.map((chunk, index) => (
         <div key={index} className="flex flex-col gap-2 w-[88vw] max-w-[340px] md:max-w-[400px] shrink-0 snap-center">
           {chunk.map((match: any) => (
-            <a key={match.match_id} href={`https://stream.onyx.com/match/${match.match_id}`} target="_blank" rel="noopener noreferrer" className="block">
+            <a key={match.match_id} href={`${PLAYER_DOMAIN}/match/${match.match_id}`} target="_blank" rel="noopener noreferrer" className="block">
               <div className="p-3 rounded-xl bg-[#121212] border border-white/5 flex items-center justify-between shadow-sm cursor-pointer hover:bg-[#1a1a1a]">
                 
                 <div className="flex flex-col min-w-[50px] items-start">

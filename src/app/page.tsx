@@ -2,6 +2,7 @@ import { LiveMatchCard } from '../components/LiveMatchCard';
 import { UpcomingSection } from '../components/UpcomingSection';
 import { HighlightCard } from '../components/HighlightCard';
 import { BannerAd } from '../components/BannerAd';
+import { PLAYER_DOMAIN, APP_DOWNLOAD_URL } from '../lib/config';
 import Link from 'next/link';
 
 async function getHomePageData() {
@@ -12,7 +13,7 @@ async function getHomePageData() {
 
   const headers = {
     'X-App-Key': secretKey,
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
     'Accept': 'application/json',
   };
 
@@ -44,20 +45,28 @@ async function getHomePageData() {
 
 export default async function HomePage() {
   const { live, upcoming, highlights, ads } = await getHomePageData();
-
   const homeBanners = ads.filter((ad: any) => ad.position === 'home_banner' && ad.is_active === 1);
 
   return (
     <main className="min-h-screen bg-[#000000] text-white w-full overflow-x-hidden pb-10">
       
-      <div className="flex justify-between items-center px-4 md:px-8 py-4">
+      {/* Header & App Install Button */}
+      <div className="flex justify-between items-center px-4 md:px-8 py-4 border-b border-white/5 bg-black/90 sticky top-0 z-50 backdrop-blur-md">
         <h1 className="text-2xl font-black tracking-wider">
           ONY<span className="text-[#00E676]">X</span>
         </h1>
+        <a 
+          href={APP_DOWNLOAD_URL} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="bg-[#00E676] text-black text-xs font-bold px-3 py-1.5 rounded-lg hover:bg-[#00c864] transition-colors flex items-center gap-1.5 shadow-lg shadow-[#00E676]/10"
+        >
+          <span>📥 App Install</span>
+        </a>
       </div>
 
       {homeBanners.length > 0 && (
-        <div className="px-4 md:px-8 mb-6 mt-2">
+        <div className="px-4 md:px-8 mb-6 mt-4">
           <div className="flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-4">
             {homeBanners.map((ad: any) => (
               <div key={ad.id} className="snap-center shrink-0 w-full md:w-[600px]">
@@ -79,7 +88,7 @@ export default async function HomePage() {
           <div className="flex gap-3 overflow-x-auto px-4 md:px-8 pb-4 scrollbar-none snap-x snap-mandatory">
             {live.map((match: any) => (
               <div key={match.match_id} className="snap-start shrink-0">
-                <a href={`https://onyx-stream-mu.vercel.app/match/${match.match_id}`} target="_blank" rel="noopener noreferrer" className="block">
+                <a href={`${PLAYER_DOMAIN}/match/${match.match_id}`} target="_blank" rel="noopener noreferrer" className="block">
                   <LiveMatchCard match={match}/>
                 </a>
               </div>
@@ -108,7 +117,7 @@ export default async function HomePage() {
           <div className="flex gap-3 overflow-x-auto px-4 md:px-8 pb-4 scrollbar-none snap-x snap-mandatory">
             {highlights.map((match: any) => (
               <div key={match.match_id} className="snap-start shrink-0">
-                <a href={`https://onyx-stream-mu.vercel.app//match/${match.match_id}`} target="_blank" rel="noopener noreferrer" className="block">
+                <a href={`${PLAYER_DOMAIN}/match/${match.match_id}`} target="_blank" rel="noopener noreferrer" className="block">
                   <HighlightCard match={match}/>
                 </a>
               </div>
